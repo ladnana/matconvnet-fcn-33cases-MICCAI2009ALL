@@ -1,9 +1,9 @@
 clc;clear;
 
-cropimagesPath =  'data/33cases_MICCAI2009/Crop_CentroidIamges_128/';
-croplabelsPath = 'data/33cases_MICCAI2009/Crop_CentroidSegmentationClass_128/';
-bilinearCropImages = 'data/33cases_MICCAI2009/Crop_CentroidIamgesbl3_128';
-bilinearCroplabelsPath = 'data/33cases_MICCAI2009/Crop_CentroidSegmentationClassbl3_128';
+cropimagesPath =  'H:/nana/data/33cases_MICCAI2009/Crop_CentroidIamges_128/';
+croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/Crop_CentroidSegmentationClass_128/';
+bilinearCropImages = 'H:/nana/data/33cases_MICCAI2009/Crop_CentroidIamgesbl3_128';
+bilinearCroplabelsPath = 'H:/nana/data/33cases_MICCAI2009/Crop_CentroidSegmentationClassbl3_128';
 
 ImagePrefix1 = 'SCD00000';
 ImageSuffix1 =[08,15,20];

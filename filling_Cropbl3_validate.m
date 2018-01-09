@@ -2,10 +2,10 @@ clear;
 clc;
 close all;
 
-initlabelsPath = 'data/33cases_MICCAI2009/SegmentationClass/';
-OutputDir = 'data/fcn4s-100-33cases_MICCAI2009_test/filling_result/';
-Outputpath = 'data/fcn4s-100-33cases_MICCAI2009_test';
-file_path =  'data/fcn4s-100-33cases_MICCAI2009_test/processed_result/' ;
+initlabelsPath = 'H:/nana/data/33cases_MICCAI2009/SegmentationClass/';
+OutputDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_test/filling_result/';
+Outputpath = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_test';
+file_path =  'H:/nana/data/fcn4s-100-33cases_MICCAI2009_test/processed_result/' ;
 
 if ~exist(fullfile(Outputpath, 'filling_result')) 
    mkdir(fullfile(Outputpath, 'filling_result'));

@@ -1,7 +1,7 @@
 clc;clear;
 
-expDir = 'data/fcn4s-100-33cases_MICCAI2009_CropCentroidIamgesbl3_128';
-inputDir = 'data/fcn4s-100-33cases_MICCAI2009_CropCentroidIamgesbl3_128/filling_result';
+expDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_CropCentroidIamgesbl3_128';
+inputDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_CropCentroidIamgesbl3_128/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 % resPath = fullfile(expDir, 'results_processed.mat') ;
 
@@ -55,7 +55,7 @@ for i=1:numel(val)
         if ~exist(outputPathPrefix) 
             mkdir(outputPathPrefix);
         end
-        purePath = 'data/icontour_pure.txt' ;
+        purePath = 'H:/nana/data/icontour_pure.txt' ;
         pureNames = textread(purePath, '%s') ;
         pureStatus = find(strcmp(pureNames,name));
         

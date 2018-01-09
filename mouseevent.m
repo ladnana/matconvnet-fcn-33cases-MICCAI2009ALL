@@ -3,8 +3,8 @@ clc
 close all
 clear all
 
-expDir = 'data/fcn4s-500-33cases_MICCAI2009_CropCentroidIamgesbl3_128';
-inputDir = 'data/fcn4s-500-33cases_MICCAI2009_128bilinear256_dealedge/filling_result';
+expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_CropCentroidIamgesbl3_128';
+inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128bilinear256_dealedge/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 
 len = length(inputDir);
@@ -70,8 +70,8 @@ function keypressfcn(src,event)
     title(strcat(name,'.png'));
     set(gcf,'userdata',[inputDir,imdbPath,index,i]);
     
-    pointDir = 'data/groundtruth';
-    Imagedata = 'data/33cases_MICCAI2009/Images'
+    pointDir = 'H:/nana/data/groundtruth';
+    Imagedata = 'H:/nana/data/33cases_MICCAI2009/Images'
     X=cell(30,2);
     X{1, 1}='SCD0000401'; X{1, 2}='SC-HF-I-05';
     X{2, 1}='SCD0000501'; X{2, 2}='SC-HF-I-06';

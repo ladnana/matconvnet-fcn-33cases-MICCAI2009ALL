@@ -1,7 +1,7 @@
 clc;clear;
 
-imdbPath = 'data/fcn4s-500-33cases_MICCAI2009_128_1.25dimension/imdb.mat';
-cropimagesPath = 'data/33cases_MICCAI2009/bilinearImages_dealinitimage';
+imdbPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_1.25dimension/imdb.mat';
+cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/bilinearImages_dealinitimage';
 
 imdb = load(imdbPath) ;
 colormap=zeros(3,3);

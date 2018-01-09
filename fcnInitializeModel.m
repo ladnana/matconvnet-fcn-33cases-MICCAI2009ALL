@@ -2,7 +2,7 @@ function net = fcnInitializeModel(varargin)
 %FCNINITIALIZEMODEL Initialize the FCN-32 model from VGG-VD-16
 
 opts.sourceModelUrl = 'http://www.vlfeat.org/matconvnet/models/imagenet-vgg-verydeep-16.mat' ;
-opts.sourceModelPath = 'data/models/imagenet-vgg-verydeep-16.mat' ;
+opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
 opts = vl_argparse(opts, varargin) ;
 
 % -------------------------------------------------------------------------

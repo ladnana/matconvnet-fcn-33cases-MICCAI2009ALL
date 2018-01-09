@@ -1,14 +1,14 @@
 function fcnTrain(varargin)
 %FNCTRAIN Train FCN model using MatConvNet
 
-run matconvnet/matlab/vl_setupnn ;
-addpath matconvnet/examples ;
+run ../matconvnet/matlab/vl_setupnn ;
+addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'data/fcn4s-500-33cases_128' ;
-opts.dataDir = 'data/33cases_MICCAI2009' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_128' ;
+opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
-opts.sourceModelPath = 'data/models/imagenet-vgg-verydeep-16.mat' ;
+opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
 % experiment setup

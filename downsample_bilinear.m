@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'data/fcn4s-100-33cases_MICCAI2009_128bilinear256_dealedge/down_result/';
-Outputpath = 'data/fcn4s-100-33cases_MICCAI2009_128bilinear256_dealedge';
-file_path =  'data/fcn4s-100-33cases_MICCAI2009_128bilinear256_dealedge/processed_result/'
+OutputDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128bilinear256_dealedge/down_result/';
+Outputpath = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128bilinear256_dealedge';
+file_path =  'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128bilinear256_dealedge/processed_result/'
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像  
 img_num = length(img_path_list);%获取图像总数量   
 
