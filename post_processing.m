@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_128/processed_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_128';
-file_path =  'H:/nana/data/fcn4s-500-33cases_128/segamentation_result/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all/processed_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all/segamentation_result/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
