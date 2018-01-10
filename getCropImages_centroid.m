@@ -1,9 +1,9 @@
 clc;clear;
 
-cropimagesPath =  'H:/nana/data/33cases_MICCAI2009/Images/';
-croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/SegmentationClass/';
-bilinearCropImages = 'H:/nana/data/33cases_MICCAI2009/Crop_CentroidIamges_128';
-bilinearCroplabelsPath = 'H:/nana/data/33cases_MICCAI2009/Crop_CentroidSegmentationClass_128';
+cropimagesPath =  'H:/nana/data/33cases_MICCAI2009-256/Images/';
+croplabelsPath = 'H:/nana/data/33cases_MICCAI2009-256/SegmentationClass/';
+bilinearCropImages = 'H:/nana/data/33cases_MICCAI2009-256/Crop_CentroidIamges_128';
+bilinearCroplabelsPath = 'H:/nana/data/33cases_MICCAI2009-256/Crop_CentroidSegmentationClass_128';
 
 ImagePrefix1 = 'SCD00000';
 ImageSuffix1 =[08,15,20];
@@ -25,8 +25,8 @@ centroid2 = zeros(1,2);
 for i = 1:33
     name_i = strcat(ImagePrefix1,num2str(i,'%02d'));
     name_i = strcat(name_i,'_');
-    for j = 1:numel(ImageSuffix1)
-        name = strcat(name_i,num2str(ImageSuffix1(j),'%02d'));
+    for j = 1:20
+        name = strcat(name_i,num2str(j,'%02d'));
         name1 = strcat(name,'*.mat');
         name2 = strcat(name,'*.png');
         img_path_list1 = dir(strcat(cropimagesPath,name1));%获取该文件夹中每个case的图像
