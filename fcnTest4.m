@@ -149,7 +149,8 @@ for i = 1:numel(val)
     im_ = gpuArray(im_) ;
   end
 
-  net.eval({inputVar, im_}) ;
+  net.eval({inputVar, im_, name,opts.expDir}) ;
+%   net.eval({inputVar, im_}) ;
   scores_ = gather(net.vars(predVar).value) ;
   [~,pred_] = max(scores_,[],3) ;
 
