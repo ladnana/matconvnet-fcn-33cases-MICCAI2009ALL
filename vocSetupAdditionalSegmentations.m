@@ -33,8 +33,8 @@ function imdb = vocSetupAdditionalSegmentations(imdb, varargin)
 %      X = PX  (the test set is uncahgend)
 %      T = (S \ V) \ X (the rest is training material)
 
-opts.dataDir = 'H:/nana/data/voc12' ;
-opts.archiveDir = 'H:/nana/data/archives' ;
+opts.dataDir = 'data/voc12' ;
+opts.archiveDir = 'data/archives' ;
 opts.mergeMode = 2 ;
 opts.url = 'http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/semantic_contours/benchmark.tgz' ;
 opts = vl_argparse(opts, varargin) ;
