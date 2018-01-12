@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_128/filling_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_128';
-file_path =  'H:/nana/data/fcn4s-500-33cases_128/processed_result/'
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf/filling_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf/processed_result/'
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像  
 img_num = length(img_path_list);%获取图像总数量   
 
@@ -16,7 +16,7 @@ end
      image_name = img_path_list(j).name;% 图像名  
      [I,map] = imread(strcat(file_path,image_name)); 
      [m,n] = size(I);
-     I = I(1:2:m,1:2:n);
+%      I = I(1:2:m,1:2:n);
 %      b = padarray(I, [64 64]); 
      a = padarray(I, [63 63]); %在A的周围扩展63个0
      b = padarray(a,[2 2],'replicate','post');
