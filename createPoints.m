@@ -1,7 +1,7 @@
 clc;clear;
 
-expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf';
-inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf/filling_result';
+expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf';
+inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 % resPath = fullfile(expDir, 'results_processed.mat') ;
 
@@ -99,7 +99,7 @@ for i=1:numel(val)
                 end
                 fclose(fidi); 
                 %show results
-                figure(100) ;clf ;
+                figure(500) ;clf ;
                 imshow(input,[]);
                 hold on;plot(boundariesI(:,2),boundariesI(:,1),'r.');
                 title(name);
@@ -169,7 +169,7 @@ for i=1:numel(val)
                 fclose(fido);
                 
                 %show results
-                figure(100) ;clf ;
+                figure(500) ;clf ;
                 imshow(input,[]);
                 hold on;plot(boundariesI(:,2),boundariesI(:,1),'r.');
                 hold on;plot(boundariesO(:,2),boundariesO(:,1),'b.');

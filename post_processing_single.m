@@ -1,7 +1,7 @@
 clear;
 clc;
 close all;
-pathfile = 'SCD0002801_0040.png';
+pathfile = 'SCD0002101_0060.png';
 [I,map] = imread(pathfile);
 imshow(I,map);
 I_i = uint8(zeros(size(I)));
@@ -36,7 +36,7 @@ for i = [1 2]
         endocardium = uint8(zeros(size(I)));
         endocardium ( find (I2==1) ) = 1;
         %%%%%%%%%%%%%%%%%%%%%
-        if length(find(I2==1)) < 100
+        if length(find(I2==1)) < 500
             areaTh = 0;
             se2 = strel('disk',1);
         else

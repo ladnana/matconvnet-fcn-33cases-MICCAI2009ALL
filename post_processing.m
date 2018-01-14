@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf/processed_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_ratehalf/segamentation_result/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf/processed_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf/segamentation_result/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
@@ -52,7 +52,7 @@ for j = 1:img_num %逐一读取图像
             endocardium = uint8(zeros(size(I)));
             endocardium ( find (I2==1) ) = 1;
             %%%%%%%%%%%%%%%%%%%%%
-            if length(find(I2==1)) < 100
+            if length(find(I2==1)) < 500
                 areaTh = 0;
                 se2 = strel('disk',1);
             else
