@@ -30,7 +30,7 @@ trainOpts.continue = true ;
 trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
-trainOpts.learningRate = 0.000008 * ones(1,500) ;%edited by mR ԭʼΪ0.00001
+trainOpts.learningRate = 0.0001 * 0.8 * ones(1,500) ;%edited by mR ԭʼΪ0.0001
 trainOpts.numEpochs = numel(trainOpts.learningRate) ;
 
 % -------------------------------------------------------------------------
