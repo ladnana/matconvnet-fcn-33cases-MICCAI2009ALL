@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf/processed_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doublehalf/segamentation_result/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate0.8/processed_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate0.8';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate0.8/segamentation_result/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
@@ -18,7 +18,6 @@ for j = 1:img_num %逐一读取图像
     image_name = img_path_list(j).name;% 图像名
     [I,map] = imread(strcat(file_path,image_name));
     imshow(I,map);
-    %     [I,map] = imread('SCD0003401_0100.png');
     I_i = uint8(zeros(size(I)));
     I_o = uint8(zeros(size(I)));
     I_i ( find (I==1) ) = 1;
@@ -79,13 +78,13 @@ for j = 1:img_num %逐一读取图像
     %         B = bwboundaries (endocardium);
     %         if ~isempty (B)
     %             endoB = fliplr(B{1});
-    %             autoIContoursFilename = [OutputDir1 'fcn4s_Eval-100-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-icontour-auto.txt'];
+    %             autoIContoursFilename = [OutputDir1 'fcn4s_Eval-500-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-icontour-auto.txt'];
     %             dlmwrite (autoIContoursFilename, endoB, ' ');
     %         end
     %         B = bwboundaries (epicardium);
     %         if ~isempty (B)
     %             epiB = fliplr(B{1});
-    %             autoOContoursFilename = [OutputDir1 'fcn4s_Eval-100-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-ocontour-auto.txt'];
+    %             autoOContoursFilename = [OutputDir1 'fcn4s_Eval-500-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-ocontour-auto.txt'];
     %             dlmwrite (autoOContoursFilename, epiB, ' ');
     %         end
     
