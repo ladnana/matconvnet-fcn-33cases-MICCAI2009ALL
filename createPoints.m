@@ -1,7 +1,7 @@
 clc;clear;
 
-expDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate(1-0.8-0.5)';
-inputDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate(1-0.8-0.5)/filling_result';
+expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateAdaptive';
+inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateAdaptive/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 % resPath = fullfile(expDir, 'results_processed.mat') ;
 
