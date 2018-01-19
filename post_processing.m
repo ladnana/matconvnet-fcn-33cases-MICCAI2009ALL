@@ -2,14 +2,14 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/128_process/processed_result2/';
-Outputpath = 'H:/nana/data/128_process';
-file_path =  'H:/nana/data/128_process/segamentation_result/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateAdaptive/processed_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateAdaptive';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateAdaptive/segamentation_result/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
-if ~exist(fullfile(Outputpath, 'processed_result2'))
-    mkdir(fullfile(Outputpath, 'processed_result2'));
+if ~exist(fullfile(Outputpath, 'processed_result'))
+    mkdir(fullfile(Outputpath, 'processed_result'));
 end
 
 % A = imread(strcat(file_path,'SCD0000401_0040.png'));
@@ -110,7 +110,7 @@ for j = 1:img_num %逐一读取图像
     index = find (IN);
     SolidCircle = zeros( size( endocardium ));
     SolidCircle(sub2ind(size(SolidCircle), X(index),Y(index))) = 1;
-    endocardium = imdilate(SolidCircle,strel('disk',5));
+    endocardium = imdilate(SolidCircle,strel('disk',2));
     
     [r,c]= find( endocardium );
     IN = inpolygon (c,r, vx, vy);
@@ -199,6 +199,7 @@ for j = 1:img_num %逐一读取图像
     figure(4); imshow(I,[0 255]);  hold on;
     [vx, vy]  = ellipse(bestFits(1,3),bestFits(1,4),bestFits(1,5)*pi/180,bestFits(1,1),bestFits(1,2),'w');
     
+    epicardium = imdilate(epicardium,strel('disk',1));
     [r,c]= find( epicardium );
     IN = inpolygon (c,r, vx, vy);
     index = find (IN);
@@ -236,12 +237,13 @@ for j = 1:img_num %逐一读取图像
     if(diff > 10)
         I = C;
     else
-        A = double(endocardium0);
-        B = double(epicardium0);
-        I = zeros(size(A));
-        I(find(A)) = 1;
-        I(find(B)) = 2;
-        I = uint8(I);
+%         A = double(endocardium0);
+%         B = double(epicardium0);
+%         I = zeros(size(A));
+%         I(find(A)) = 1;
+%         I(find(B)) = 2;
+%         I = uint8(I);
+          I = I0;
     end
     image(I);
     imshow(I,map);

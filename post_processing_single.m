@@ -1,7 +1,7 @@
 clear;
 clc;
 close all;
-pathfile = 'SCD0001601_0079.png';
+pathfile = 'SCD0004101_0200.png';
 [I,map] = imread(pathfile);
 imshow(I,map);
 I_i = uint8(zeros(size(I)));
@@ -221,12 +221,13 @@ diff = norm(double(C) - double(I0),2);
 if(diff > 10)
     I = C;
 else
-    A = double(endocardium0);
-    B = double(epicardium0);
-    I = zeros(size(A));
-    I(find(A)) = 1;
-    I(find(B)) = 2;
-    I = uint8(I);
+%     A = double(endocardium0);
+%     B = double(epicardium0);
+%     I = zeros(size(A));
+%     I(find(A)) = 1;
+%     I(find(B)) = 2;
+%     I = uint8(I);
+      I = I0;
 end
 image(I);
 imshow(I,map);
