@@ -74,6 +74,42 @@ for j = 1:img_num %逐一读取图像
         end
     end
     
+    A = double(endocardium);
+    B = double(epicardium);
+    imsize = size(A);
+    C = zeros(imsize);
+    C(find(A)) = 1;
+    C(find(B)) = 2;
+    I0 = uint8(C);  %为了保留图片做对比
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%extract ellipse from epocardium %%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    endocardium0 = endocardium;
+    E = edge(endocardium);
+    endoparams.minMajorAxis = 10;
+    endoparams.maxMajorAxis = 180;
+    endoparams.minAspectRatio = 0.8;
+    endoparams.randomize = 0;
+    endoparams.numBest = 1;
+    endobestFits = ellipseDetection(E, endoparams);
+    [vx, vy]  = ellipse(endobestFits(1,3),endobestFits(1,4),endobestFits(1,5)*pi/180,endobestFits(1,1),endobestFits(1,2),'w');
+    
+    sz = size(I);
+    [X,Y] = meshgrid(1:sz(1),1:sz(1));
+    IN = inpolygon (Y, X, vx, vy);
+    index = find (IN);
+    SolidCircle = zeros( size( endocardium ));
+    SolidCircle(sub2ind(size(SolidCircle), X(index),Y(index))) = 1;
+    endocardium = imdilate(SolidCircle,strel('disk',2));
+    
+    [r,c]= find( endocardium );
+    IN = inpolygon (c,r, vx, vy);
+    index = find (IN);
+    mask = zeros( size( endocardium ));
+    mask(sub2ind(size(mask), r(index), c(index))) = 1;
+    
+    endocardium = mask;
     
     %         %%%%%write auto segmentation results%%%%%%%%%%%
     %         B = bwboundaries (endocardium);
@@ -89,21 +125,35 @@ for j = 1:img_num %逐一读取图像
     %             dlmwrite (autoOContoursFilename, epiB, ' ');
     %         end
     
-    pathfile = fullfile(OutputDir,image_name);
     A = double(endocardium);
     B = double(epicardium);
     imsize = size(A);
     C = zeros(imsize);
-    for j = 1 : imsize(1)
-        for k = 1 : imsize(2)
-            if sum(A(j, k, :)) == 0
-                C(j, k, :) = B(j, k, :);
-            else
-                C(j, k, :) = A(j, k, :);
-            end
-        end
-    end
-    C = uint8(C);
-    image(C)
-    imwrite(C,map,pathfile,'png');
+    C(find(A)) = 1;
+    C(find(B)) = 2;
+    I = uint8(C);
+%     diff = norm(double(endocardium) - double(endocardium0),2);
+%     if(diff > 6.6)
+%         I = C;
+%     else
+%         I = I0;
+%     end
+%     A = double(endocardium);
+%     B = double(epicardium);
+%     imsize = size(A);
+%     C = zeros(imsize);
+%     for j = 1 : imsize(1)
+%         for k = 1 : imsize(2)
+%             if sum(A(j, k, :)) == 0
+%                 C(j, k, :) = B(j, k, :);
+%             else
+%                 C(j, k, :) = A(j, k, :);
+%             end
+%         end
+%     end
+%     C = uint8(C);
+    image(I);
+    imshow(I,map);
+    pathfile = fullfile(OutputDir,image_name);
+    imwrite(I,map,pathfile,'png');
 end
