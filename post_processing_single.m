@@ -1,7 +1,7 @@
 clear;
 clc;
 close all;
-pathfile = 'SCD0004101_0200.png';
+pathfile = 'SCD0004001_0039.png';
 [I,map] = imread(pathfile);
 imshow(I,map);
 I_i = uint8(zeros(size(I)));

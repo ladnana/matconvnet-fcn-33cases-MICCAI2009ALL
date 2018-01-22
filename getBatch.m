@@ -48,9 +48,11 @@ for i=1:numel(images)
   % acquire image
   if isempty(im{i})
       Temp_type = imdb.images.name{images(i)};
-      Temp_type = Temp_type(7:10);
+%       Temp_type = Temp_type(7:10);
+      sz = size(Temp_type);
+      Temp_type = Temp_type(sz(end) - 8 :sz(end)-5);
       Temp_num = str2num(Temp_type);
-      if Temp_num<34
+      if Temp_num < 34
           rgbPath = sprintf(imdb.paths.image2, imdb.images.name{images(i)}) ;
           rgb = load(rgbPath) ;
           rgb = rgb.picture;

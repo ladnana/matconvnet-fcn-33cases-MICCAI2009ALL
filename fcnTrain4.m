@@ -5,7 +5,7 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_(2.0-1.0-0.5)rsmprop' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop' ;
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
@@ -32,8 +32,6 @@ trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
 trainOpts.numEpochs = 500;
 trainOpts.learningRate = 0.0001;%edited by mR ԭʼΪ0.0001
-trainOpts.learningRate(101:300) = 0.0001;
-trainOpts.learningRate(301:trainOpts.numEpochs) = 0.0001 * 0.5;
 
 % -------------------------------------------------------------------------
 % Setup data
