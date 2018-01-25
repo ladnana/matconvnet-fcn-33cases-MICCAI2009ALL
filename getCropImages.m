@@ -1,8 +1,8 @@
 clc;clear;
 
-imdbPath = 'data/33case/imdb.mat';
-cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/CropDCMImages_33case';
-croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/CropSegmentationClass_33case';
+imdbPath = 'H:/nana/data/test1/imdb.mat';
+cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/CropDCMImages2';
+croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/CropSegmentationClass2';
 
 imdb = load(imdbPath) ;
 colormap=zeros(3,3);
@@ -12,7 +12,7 @@ size = find(imdb.images.segmentation) ;
 
 for i = 1:numel(size)
     %create croped images
-    if i < 1508
+    if i < 757
         imagePath = sprintf(imdb.paths.image2, imdb.images.name{i}) ;
         I = load(imagePath);
         picture = I.picture;

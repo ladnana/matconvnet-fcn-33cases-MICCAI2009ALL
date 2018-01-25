@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop/processed_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop/segamentation_result/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop/processed_result/';
+Outputpath = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop';
+file_path =  'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop/segamentation_result/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
@@ -52,7 +52,7 @@ for j = 1:img_num %逐一读取图像
             endocardium = uint8(zeros(size(I)));
             endocardium ( find (I2==1) ) = 1;
             %%%%%%%%%%%%%%%%%%%%%
-            if length(find(I2==1)) < 500
+            if length(find(I2==1)) < 100
                 areaTh = 0;
                 se2 = strel('disk',1);
             else
@@ -81,10 +81,10 @@ for j = 1:img_num %逐一读取图像
 %     C(find(A)) = 1;
 %     C(find(B)) = 2;
 %     I0 = uint8(C);  %为了保留图片做对比
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%extract ellipse from epocardium %%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%extract ellipse from epocardium %%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     endocardium0 = endocardium;
 %     E = edge(endocardium);
 %     endoparams.minMajorAxis = 10;
@@ -110,7 +110,7 @@ for j = 1:img_num %逐一读取图像
 %     mask(sub2ind(size(mask), r(index), c(index))) = 1;
 %     
 %     endocardium = mask;
-    
+%     
     %         %%%%%write auto segmentation results%%%%%%%%%%%
     %         B = bwboundaries (endocardium);
     %         if ~isempty (B)
@@ -133,25 +133,9 @@ for j = 1:img_num %逐一读取图像
     C(find(B)) = 2;
     I = uint8(C);
 %     diff = norm(double(endocardium) - double(endocardium0),2);
-%     if(diff > 6.6)
-%         I = C;
-%     else
+%     if(diff <= 6.0)
 %         I = I0;
 %     end
-%     A = double(endocardium);
-%     B = double(epicardium);
-%     imsize = size(A);
-%     C = zeros(imsize);
-%     for j = 1 : imsize(1)
-%         for k = 1 : imsize(2)
-%             if sum(A(j, k, :)) == 0
-%                 C(j, k, :) = B(j, k, :);
-%             else
-%                 C(j, k, :) = A(j, k, :);
-%             end
-%         end
-%     end
-%     C = uint8(C);
     image(I);
     imshow(I,map);
     pathfile = fullfile(OutputDir,image_name);

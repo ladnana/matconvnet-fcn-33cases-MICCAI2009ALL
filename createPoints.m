@@ -1,7 +1,7 @@
 clc;clear;
 
-expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop';
-inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop/filling_result';
+expDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop';
+inputDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 % resPath = fullfile(expDir, 'results_processed.mat') ;
 
@@ -24,21 +24,21 @@ X{12,1}='SCD0003401'; X{12,2}='SC-HYP-37';
 X{13,1}='SCD0003901'; X{13,2}='SC-N-05';
 X{14,1}='SCD0004001'; X{14,2}='SC-N-06';
 X{15,1}='SCD0004101'; X{15,2}='SC-N-07';
-% X{16, 1}='SCD0000801'; X{16, 2}='SC-HF-I-09';
-% X{17, 1}='SCD0000901'; X{17, 2}='SC-HF-I-10';
-% X{18, 1}='SCD0001001'; X{18, 2}='SC-HF-I-11';
-% X{19, 1}='SCD0001101'; X{19, 2}='SC-HF-I-12';
-% X{20, 1}='SCD0001701'; X{20, 2}='SC-HF-NI-12';
-% X{21, 1}='SCD0001801'; X{21, 2}='SC-HF-NI-13';
-% X{22, 1}='SCD0001901'; X{22, 2}='SC-HF-NI-14';
-% X{23, 1}='SCD0002001'; X{23, 2}='SC-HF-NI-15';
-% X{24, 1}='SCD0003001'; X{24, 2}='SC-HYP-09';
-% X{25,1}='SCD0003101'; X{25,2}='SC-HYP-10';
-% X{26,1}='SCD0003201'; X{26,2}='SC-HYP-11';
-% X{27,1}='SCD0003301'; X{27,2}='SC-HYP-12';
-% X{28,1}='SCD0004201'; X{28,2}='SC-N-09';
-% X{29,1}='SCD0004301'; X{29,2}='SC-N-10';
-% X{30,1}='SCD0004401'; X{30,2}='SC-N-11';
+X{16, 1}='SCD0000801'; X{16, 2}='SC-HF-I-09';
+X{17, 1}='SCD0000901'; X{17, 2}='SC-HF-I-10';
+X{18, 1}='SCD0001001'; X{18, 2}='SC-HF-I-11';
+X{19, 1}='SCD0001101'; X{19, 2}='SC-HF-I-12';
+X{20, 1}='SCD0001701'; X{20, 2}='SC-HF-NI-12';
+X{21, 1}='SCD0001801'; X{21, 2}='SC-HF-NI-13';
+X{22, 1}='SCD0001901'; X{22, 2}='SC-HF-NI-14';
+X{23, 1}='SCD0002001'; X{23, 2}='SC-HF-NI-15';
+X{24, 1}='SCD0003001'; X{24, 2}='SC-HYP-09';
+X{25,1}='SCD0003101'; X{25,2}='SC-HYP-10';
+X{26,1}='SCD0003201'; X{26,2}='SC-HYP-11';
+X{27,1}='SCD0003301'; X{27,2}='SC-HYP-12';
+X{28,1}='SCD0004201'; X{28,2}='SC-N-09';
+X{29,1}='SCD0004301'; X{29,2}='SC-N-10';
+X{30,1}='SCD0004401'; X{30,2}='SC-N-11';
 
 for i=1:numel(val)
    
@@ -99,7 +99,7 @@ for i=1:numel(val)
                 end
                 fclose(fidi); 
                 %show results
-                figure(500) ;clf ;
+                figure(100) ;clf ;
                 imshow(input,[]);
                 hold on;plot(boundariesI(:,2),boundariesI(:,1),'r.');
                 title(name);
@@ -169,7 +169,7 @@ for i=1:numel(val)
                 fclose(fido);
                 
                 %show results
-                figure(500) ;clf ;
+                figure(100) ;clf ;
                 imshow(input,[]);
                 hold on;plot(boundariesI(:,2),boundariesI(:,1),'r.');
                 hold on;plot(boundariesO(:,2),boundariesO(:,1),'b.');

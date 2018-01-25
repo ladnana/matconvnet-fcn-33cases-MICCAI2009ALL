@@ -5,7 +5,7 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop' ;
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
@@ -31,7 +31,7 @@ trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
 trainOpts.numEpochs = 500;
-trainOpts.learningRate = 0.0001;%edited by mR ԭʼΪ0.0001
+trainOpts.learningRate = 0.0002;%edited by mR ԭʼΪ0.0001
 
 % -------------------------------------------------------------------------
 % Setup data
@@ -100,7 +100,7 @@ bopts.numThreads = opts.numFetchThreads ;
 bopts.labelStride = 1 ;
 bopts.labelOffset = 1 ;
 bopts.classWeights = ones(1,3,'single') ;
-bopts.rgbMean = stats.rgbMean ;
+bopts.rgbMean = stats.rgbMean ; 
 bopts.useGpu = numel(opts.train.gpus) > 0 ;
 
 % Launch SGD

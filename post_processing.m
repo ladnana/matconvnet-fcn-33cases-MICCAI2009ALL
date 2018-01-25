@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop/processed_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_doubledata_rsmprop/segamentation_result/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop/processed_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop/segamentation_result/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
@@ -14,7 +14,7 @@ end
 
 % A = imread(strcat(file_path,'SCD0000401_0040.png'));
 % imshow(A);
-for j = 1:img_num %逐一读取图像
+for j = 495:img_num %逐一读取图像
     image_name = img_path_list(j).name;% 图像名
     [I,map] = imread(strcat(file_path,image_name));
     imshow(I,map);
