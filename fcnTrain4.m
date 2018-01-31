@@ -5,7 +5,7 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateLinearDecay_RMSprop' ;
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
@@ -31,7 +31,14 @@ trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
 trainOpts.numEpochs = 500;
-trainOpts.learningRate = 0.0002;%edited by mR ԭʼΪ0.0001
+trainOpts.learningRate = 0.0001 * ones(1,trainOpts.numEpochs);%edited by mR ԭʼΪ0.0001
+trainOpts.learningRate(trainOpts.numEpochs) = trainOpts.learningRate(1) * 0.01;
+for i = 2 :trainOpts.numEpochs - 1
+    afa = i / trainOpts.numEpochs ;
+    trainOpts.learningRate(i) =  (1 - afa) * trainOpts.learningRate(i) + afa  * trainOpts.learningRate(trainOpts.numEpochs);
+%     trainOpts.learningRate(i) =  trainOpts.learningRate(i)/(1 + i * trainOpts.numEpochs);
+%     trainOpts.learningRate(i) =  trainOpts.learningRate(i) * log(-(i * trainOpts.numEpochs));
+end
 
 % -------------------------------------------------------------------------
 % Setup data

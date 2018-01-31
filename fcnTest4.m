@@ -4,9 +4,9 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop' ;%edited by mR
+opts.expDir = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rateLinearDecay_RMSprop' ;%edited by mR
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
-opts.modelPath = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop/net-epoch-100.mat' ;%edited by mR
+opts.modelPath = 'H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rateLinearDecay_RMSprop/net-epoch-100.mat' ;%edited by mR
 opts.modelFamily = 'matconvnet' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
@@ -182,7 +182,7 @@ for i = 1:numel(val)
     fprintf('%4.1f ', 100 * info.iu) ;
     fprintf('\n meanIU: %5.2f pixelAcc: %5.2f, meanAcc: %5.2f\n', ...
             100*info.miu, 100*info.pacc, 100*info.macc) ;
-    diary(fullfile('H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rate2.0RMSprop', 'info.txt')); 
+    diary(fullfile('H:/nana/data/fcn4s-100-33cases_MICCAI2009_128_rateLinearDecay_RMSprop', 'info.txt')); 
     disp([name,' ',num2str(info.iu(2)),' ',num2str(info.iu(3)),' ',num2str(info.pacc),' ',num2str(info.macc)]);%edited by mR
     diary off;
 
@@ -193,7 +193,7 @@ for i = 1:numel(val)
 %     drawnow ;
 
     % Print segmentation
-    figure(502) ;clf ;
+    figure(100) ;clf ;
     displayImage(rgb, lb, pred) ;
     drawnow ;
     if ~exist(fullfile(opts.expDir, 'comparisons')) 
