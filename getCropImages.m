@@ -1,8 +1,8 @@
 clc;clear;
 
-imdbPath = 'H:/nana/data/test1/imdb.mat';
-cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/CropDCMImages2';
-croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/CropSegmentationClass2';
+imdbPath = 'H:/nana/data/33cases_MICCAI2009_all/imdb.mat';
+cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/CropDCMImages3';
+croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/CropSegmentationClass3';
 
 imdb = load(imdbPath) ;
 colormap=zeros(3,3);

@@ -74,89 +74,89 @@ for j = 1:img_num %逐一读取图像
         end
     end
     
-    A = double(endocardium);
-    B = double(epicardium);
-    imsize = size(A);
-    C = zeros(imsize);
-    C(find(A)) = 1;
-    C(find(B)) = 2;
-    I0 = uint8(C);  %为了保留图片做对比
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%extract ellipse from epocardium %%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    endocardium0 = endocardium;
-    E = edge(endocardium);
-    endoparams.minMajorAxis = 10;
-    endoparams.maxMajorAxis = 180;
-    endoparams.minAspectRatio = 0.8;
-    endoparams.randomize = 0;
-    endoparams.numBest = 1;
-    endobestFits = ellipseDetection(E, endoparams);
-    [vx, vy]  = ellipse(endobestFits(1,3),endobestFits(1,4),endobestFits(1,5)*pi/180,endobestFits(1,1),endobestFits(1,2),'w');
-    
-    sz = size(I);
-    [X,Y] = meshgrid(1:sz(1),1:sz(1));
-    IN = inpolygon (Y, X, vx, vy);
-    index = find (IN);
-    SolidCircle = zeros( size( endocardium ));
-    SolidCircle(sub2ind(size(SolidCircle), X(index),Y(index))) = 1;
-    endocardium = imdilate(SolidCircle,strel('disk',1));
-    
-    [r,c]= find( endocardium );
-    IN = inpolygon (c,r, vx, vy);
-    index = find (IN);
-    mask = zeros( size( endocardium ));
-    mask(sub2ind(size(mask), r(index), c(index))) = 1;
-    
-    endocardium = mask;
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%extract ellipse from epicardium %%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    epicardium0 = epicardium;
-    params.minMajorAxis = endobestFits(1,3)+5;
-    params.maxMajorAxis = 180;
-    params.minAspectRatio = 0.8;
-    params.randomize = 0;
-    params.numBest = 1;
-    %         LVregion = zeros( size(epicardium ));
-    %         LVregion( find((epicardium | imdilate(endomask,strel('disk',7))))) = 1;
-    LVregion = epicardium;
-    E = edge (LVregion, 'canny');
-    % if length(find(endocardium)) < 150
-    %     params.minAspectRatio = 0.9;
-    %     E( find(~(imdilate(epicardium,strel('disk',5)) | imdilate(endomask,strel('disk',7))))) = 0;
-    % else
-    %     E( find(~(imdilate(epicardium,strel('disk',1)) | imdilate(endomask,strel('disk',7))))) = 0;
-    % end
-    E( find ( imdilate(endocardium,strel('disk',3)))) = 0;
-    bestFits = ellipseDetection(E, params);
-    figure(4); imshow(I,[0 255]);  hold on;
-    [vx, vy]  = ellipse(bestFits(1,3),bestFits(1,4),bestFits(1,5)*pi/180,bestFits(1,1),bestFits(1,2),'w');
-    
-%     epicardium = imdilate(epicardium,strel('disk',1));
-    [r,c]= find( epicardium );
-    IN = inpolygon (c,r, vx, vy);
-    index = find (IN);
-    mask = zeros( size( epicardium ));
-    mask(sub2ind(size(mask), r(index), c(index))) = 1;
-    
-    epicardium = mask;
-
-    %         %%%%%write auto segmentation results%%%%%%%%%%%
-    %         B = bwboundaries (endocardium);
-    %         if ~isempty (B)
-    %             endoB = fliplr(B{1});
-    %             autoIContoursFilename = [OutputDir1 'fcn4s_Eval-100-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-icontour-auto.txt'];
-    %             dlmwrite (autoIContoursFilename, endoB, ' ');
-    %         end
-    %         B = bwboundaries (epicardium);
-    %         if ~isempty (B)
-    %             epiB = fliplr(B{1});
-    %             autoOContoursFilename = [OutputDir1 'fcn4s_Eval-100-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-ocontour-auto.txt'];
-    %             dlmwrite (autoOContoursFilename, epiB, ' ');
-    %         end
+%     A = double(endocardium);
+%     B = double(epicardium);
+%     imsize = size(A);
+%     C = zeros(imsize);
+%     C(find(A)) = 1;
+%     C(find(B)) = 2;
+%     I0 = uint8(C);  %为了保留图片做对比
+%     
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%extract ellipse from epocardium %%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     endocardium0 = endocardium;
+%     E = edge(endocardium);
+%     endoparams.minMajorAxis = 10;
+%     endoparams.maxMajorAxis = 180;
+%     endoparams.minAspectRatio = 0.8;
+%     endoparams.randomize = 0;
+%     endoparams.numBest = 1;
+%     endobestFits = ellipseDetection(E, endoparams);
+%     [vx, vy]  = ellipse(endobestFits(1,3),endobestFits(1,4),endobestFits(1,5)*pi/180,endobestFits(1,1),endobestFits(1,2),'w');
+%     
+%     sz = size(I);
+%     [X,Y] = meshgrid(1:sz(1),1:sz(1));
+%     IN = inpolygon (Y, X, vx, vy);
+%     index = find (IN);
+%     SolidCircle = zeros( size( endocardium ));
+%     SolidCircle(sub2ind(size(SolidCircle), X(index),Y(index))) = 1;
+%     endocardium = imdilate(SolidCircle,strel('disk',2));
+%     
+%     [r,c]= find( endocardium );
+%     IN = inpolygon (c,r, vx, vy);
+%     index = find (IN);
+%     mask = zeros( size( endocardium ));
+%     mask(sub2ind(size(mask), r(index), c(index))) = 1;
+%     
+%     endocardium = mask;
+%     
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%extract ellipse from epicardium %%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     epicardium0 = epicardium;
+%     params.minMajorAxis = endobestFits(1,3)+5;
+%     params.maxMajorAxis = 180;
+%     params.minAspectRatio = 0.8;
+%     params.randomize = 0;
+%     params.numBest = 1;
+%     %         LVregion = zeros( size(epicardium ));
+%     %         LVregion( find((epicardium | imdilate(endomask,strel('disk',7))))) = 1;
+%     LVregion = epicardium;
+%     E = edge (LVregion, 'canny');
+%     % if length(find(endocardium)) < 150
+%     %     params.minAspectRatio = 0.9;
+%     %     E( find(~(imdilate(epicardium,strel('disk',5)) | imdilate(endomask,strel('disk',7))))) = 0;
+%     % else
+%     %     E( find(~(imdilate(epicardium,strel('disk',1)) | imdilate(endomask,strel('disk',7))))) = 0;
+%     % end
+%     E( find ( imdilate(endocardium,strel('disk',3)))) = 0;
+%     bestFits = ellipseDetection(E, params);
+%     figure(4); imshow(I,[0 255]);  hold on;
+%     [vx, vy]  = ellipse(bestFits(1,3),bestFits(1,4),bestFits(1,5)*pi/180,bestFits(1,1),bestFits(1,2),'w');
+%     
+% %     epicardium = imdilate(epicardium,strel('disk',1));
+%     [r,c]= find( epicardium );
+%     IN = inpolygon (c,r, vx, vy);
+%     index = find (IN);
+%     mask = zeros( size( epicardium ));
+%     mask(sub2ind(size(mask), r(index), c(index))) = 1;
+%     
+%     epicardium = mask;
+% 
+%     %         %%%%%write auto segmentation results%%%%%%%%%%%
+%     %         B = bwboundaries (endocardium);
+%     %         if ~isempty (B)
+%     %             endoB = fliplr(B{1});
+%     %             autoIContoursFilename = [OutputDir1 'fcn4s_Eval-100-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-icontour-auto.txt'];
+%     %             dlmwrite (autoIContoursFilename, endoB, ' ');
+%     %         end
+%     %         B = bwboundaries (epicardium);
+%     %         if ~isempty (B)
+%     %             epiB = fliplr(B{1});
+%     %             autoOContoursFilename = [OutputDir1 'fcn4s_Eval-100-MCCAI2009-15\' caseName '\contours-auto\Auto2\IM-0001-' t(12:15) '-ocontour-auto.txt'];
+%     %             dlmwrite (autoOContoursFilename, epiB, ' ');
+%     %         end
     
     A = double(endocardium);
     B = double(epicardium);
@@ -165,10 +165,10 @@ for j = 1:img_num %逐一读取图像
     C(find(A)) = 1;
     C(find(B)) = 2;
     I = uint8(C);
-    diff = norm(double(I) - double(I0),2);
-    if(diff <= 5)
-        I = I0;
-    end
+%     diff = norm(double(I) - double(I0),2);
+%     if(diff <= 5)
+%         I = I0;
+%     end
     image(I);
     imshow(I,map);
     pathfile = fullfile(OutputDir,image_name);

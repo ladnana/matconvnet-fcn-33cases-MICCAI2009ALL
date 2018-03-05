@@ -2,7 +2,7 @@ clear;
 clc;
 close all;
 
-initlabelsPath = 'H:/nana/data/33cases_MICCAI2009-all/SegmentationClass/';
+initlabelsPath = 'H:/nana/data/33cases_MICCAI2009/SegmentationClass/';
 OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all/filling_result/';
 Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all';
 file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all/processed_result/'

@@ -71,7 +71,7 @@ for i=1:numel(images)
   else
     rgb = im{i} ;
   end
-  if size(rgb,3) == 1
+  if size(rgb,3) == 1  % 表示图像是灰度图， 等于3为RGB彩色图
     rgb = cat(3, rgb, rgb, rgb) ;
   end
 

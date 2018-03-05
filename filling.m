@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateLinearDecay_RMSprop/filling_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateLinearDecay_RMSprop';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rateLinearDecay_RMSprop/processed_result/'
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/filling_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/processed_result/'
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像  
 img_num = length(img_path_list);%获取图像总数量   
 
