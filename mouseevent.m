@@ -3,8 +3,8 @@ clc
 close all
 clear all
 
-expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_CropCentroidIamgesbl3_128';
-inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128bilinear256_dealedge/filling_result';
+expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop';
+inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 
 len = length(inputDir);
@@ -70,7 +70,7 @@ function keypressfcn(src,event)
     title(strcat(name,'.png'));
     set(gcf,'userdata',[inputDir,imdbPath,index,i]);
     
-    pointDir = 'H:/nana/data/groundtruth';
+    pointDir = 'H:/nana/data/groundtruth_all';
     Imagedata = 'H:/nana/data/33cases_MICCAI2009/Images'
     X=cell(30,2);
     X{1, 1}='SCD0000401'; X{1, 2}='SC-HF-I-05';
@@ -88,6 +88,21 @@ function keypressfcn(src,event)
     X{13,1}='SCD0003901'; X{13,2}='SC-N-05';
     X{14,1}='SCD0004001'; X{14,2}='SC-N-06';
     X{15,1}='SCD0004101'; X{15,2}='SC-N-07';
+    X{16, 1}='SCD0000801'; X{16, 2}='SC-HF-I-09';
+    X{17, 1}='SCD0000901'; X{17, 2}='SC-HF-I-10';
+    X{18, 1}='SCD0001001'; X{18, 2}='SC-HF-I-11';
+    X{19, 1}='SCD0001101'; X{19, 2}='SC-HF-I-12';
+    X{20, 1}='SCD0001701'; X{20, 2}='SC-HF-NI-12';
+    X{21, 1}='SCD0001801'; X{21, 2}='SC-HF-NI-13';
+    X{22, 1}='SCD0001901'; X{22, 2}='SC-HF-NI-14';
+    X{23, 1}='SCD0002001'; X{23, 2}='SC-HF-NI-15';
+    X{24, 1}='SCD0003001'; X{24, 2}='SC-HYP-09';
+    X{25,1}='SCD0003101'; X{25,2}='SC-HYP-10';
+    X{26,1}='SCD0003201'; X{26,2}='SC-HYP-11';
+    X{27,1}='SCD0003301'; X{27,2}='SC-HYP-12';
+    X{28,1}='SCD0004201'; X{28,2}='SC-N-09';
+    X{29,1}='SCD0004301'; X{29,2}='SC-N-10';
+    X{30,1}='SCD0004401'; X{30,2}='SC-N-11';
     
     prefix = name(1:10);
     suffix = name(12:15);
@@ -95,20 +110,36 @@ function keypressfcn(src,event)
     folder = X{value,2};
     inputPathPrefix = fullfile(pointDir,folder,'contours-manual','IRCCI-expert') ;
     
+    purePath = 'H:/nana/data/icontour_pure.txt' ;
+    pureNames = textread(purePath, '%s') ;
+    pureStatus = find(strcmp(pureNames,name));
+    
     inputPath1 = fullfile(inputPathPrefix,['IM-0001-' suffix '-icontour-manual.txt']);
     inputPath2 = fullfile(inputPathPrefix,['IM-0001-' suffix '-ocontour-manual.txt']);
     
-    display(inputPath1);
-    display(inputPath2);
-    data_i = dlmread(inputPath1);
-    data_o = dlmread(inputPath2);
-    hold all;
-    plot(data_i(:,1),data_i(:,2),'g-',data_o(:,1),data_o(:,2),'r-');
-    display(fullfile(Imagedata, [name '.dcm']));
-    I = dicomread(fullfile(Imagedata, [name '.dcm']));
-    subplot(1,2,1);
-    imshow(I, 'DisplayRange',[]);
-    title(strcat(name,'.dcm'));
+    if isempty(pureStatus)
+        display(inputPath1);
+        display(inputPath2);
+        data_i = dlmread(inputPath1);
+        data_o = dlmread(inputPath2);
+        hold all;
+        plot(data_i(:,1),data_i(:,2),'g-',data_o(:,1),data_o(:,2),'r-');
+        display(fullfile(Imagedata, [name '.dcm']));
+        I = dicomread(fullfile(Imagedata, [name '.dcm']));
+        subplot(1,2,1);
+        imshow(I, 'DisplayRange',[]);
+        title(strcat(name,'.dcm'));
+    else
+        display(inputPath1);
+        data_i = dlmread(inputPath1);
+        hold all;
+        plot(data_i(:,1),data_i(:,2),'g-');
+        display(fullfile(Imagedata, [name '.dcm']));
+        I = dicomread(fullfile(Imagedata, [name '.dcm']));
+        subplot(1,2,1);
+        imshow(I, 'DisplayRange',[]);
+        title(strcat(name,'.dcm'));
+    end
 end
 
 function keyreleasefcn(src,event)

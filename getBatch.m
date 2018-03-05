@@ -48,9 +48,11 @@ for i=1:numel(images)
   % acquire image
   if isempty(im{i})
       Temp_type = imdb.images.name{images(i)};
-      Temp_type = Temp_type(7:10);
+%       Temp_type = Temp_type(7:10);
+      sz = size(Temp_type);
+      Temp_type = Temp_type(sz(end) - 8 :sz(end)-5);
       Temp_num = str2num(Temp_type);
-      if Temp_num<34
+      if Temp_num < 34
           rgbPath = sprintf(imdb.paths.image2, imdb.images.name{images(i)}) ;
           rgb = load(rgbPath) ;
           rgb = rgb.picture;
@@ -69,7 +71,7 @@ for i=1:numel(images)
   else
     rgb = im{i} ;
   end
-  if size(rgb,3) == 1
+  if size(rgb,3) == 1  % 表示图像是灰度图， 等于3为RGB彩色图
     rgb = cat(3, rgb, rgb, rgb) ;
   end
 

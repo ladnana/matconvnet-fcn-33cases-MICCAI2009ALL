@@ -5,8 +5,8 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_all' ;
-opts.dataDir = 'H:/nana/data/33cases_MICCAI2009-all' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain' ;
+opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
@@ -30,8 +30,15 @@ trainOpts.continue = true ;
 trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
-trainOpts.learningRate = 0.0001 * ones(1,500) ;%edited by mR
-trainOpts.numEpochs = numel(trainOpts.learningRate) ;
+trainOpts.numEpochs = 500;
+trainOpts.learningRate = 0.0001 * ones(1,trainOpts.numEpochs);%edited by mR ԭʼΪ0.0001
+% trainOpts.learningRate(trainOpts.numEpochs) = trainOpts.learningRate(1) * 0.01;
+% for i = 2 :trainOpts.numEpochs - 1
+%     afa = i / trainOpts.numEpochs ;
+%     trainOpts.learningRate(i) =  (1 - afa) * trainOpts.learningRate(i) + afa  * trainOpts.learningRate(trainOpts.numEpochs);
+% %     trainOpts.learningRate(i) =  trainOpts.learningRate(i)/(1 + i * trainOpts.numEpochs);
+% %     trainOpts.learningRate(i) =  trainOpts.learningRate(i) * log(-(i * trainOpts.numEpochs));
+% end
 
 % -------------------------------------------------------------------------
 % Setup data
@@ -100,7 +107,7 @@ bopts.numThreads = opts.numFetchThreads ;
 bopts.labelStride = 1 ;
 bopts.labelOffset = 1 ;
 bopts.classWeights = ones(1,3,'single') ;
-bopts.rgbMean = stats.rgbMean ;
+bopts.rgbMean = stats.rgbMean ; 
 bopts.useGpu = numel(opts.train.gpus) > 0 ;
 
 % Launch SGD
