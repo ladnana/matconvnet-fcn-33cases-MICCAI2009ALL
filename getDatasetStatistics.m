@@ -15,8 +15,8 @@ stats.classCounts = classCounts ;
 % Image statistics
 for t=1:numel(train)
   fprintf('%s: computing RGB stats for training image %d\n', mfilename, t) ;
-%   if t < 757 || (t > 888 && t < 1645)%1009为mat图片数量+1
-  if t < 757
+%   if t < 757 %1009为mat图片数量+1
+  if t < 757 || (t > 888 && t < 1645) || (t > 1776 && t < 2533)
       rgb = load(sprintf(imdb.paths.image2, imdb.images.name{train(t)}));
       rgb = rgb.picture;
   else
