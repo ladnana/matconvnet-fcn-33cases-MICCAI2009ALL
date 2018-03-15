@@ -7,7 +7,7 @@ inputDir = 'H:/nana/data/33cases_MICCAI2009/dealDCMImages128/';
 
                                 
 % set(gcf,'WindowButtonDownFcn',@ButttonDownFcn);
-set(gcf,'windowkeypressfcn',@keypressfcn,'userdata',[inputDir,1]);
+set(gcf,'windowkeypressfcn',@keypressfcn,'userdata',[inputDir,569]);
 set(gcf,'windowkeyreleasefcn',@keyreleasefcn);
 
 end
@@ -43,7 +43,7 @@ function keypressfcn(src,event)
     display(['show: ' name]);
     inputPath = fullfile(inputDir,name) ;
     I = dicomread(inputPath);
-    imshow(I,'DisplayRange',[]);
+    imshow(I,'DisplayRange',[0 255]);
     title(name);
     set(gcf,'userdata',[inputDir,i]);
     

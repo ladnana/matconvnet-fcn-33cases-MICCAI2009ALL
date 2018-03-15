@@ -71,7 +71,7 @@ function keypressfcn(src,event)
     set(gcf,'userdata',[inputDir,imdbPath,index,i]);
     
     pointDir = 'H:/nana/data/groundtruth_all';
-    Imagedata = 'H:/nana/data/33cases_MICCAI2009/Images'
+    Imagedata = 'H:/nana/data/33cases_MICCAI2009/Images';
     X=cell(30,2);
     X{1, 1}='SCD0000401'; X{1, 2}='SC-HF-I-05';
     X{2, 1}='SCD0000501'; X{2, 2}='SC-HF-I-06';

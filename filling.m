@@ -2,14 +2,15 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/filling_result/';
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/filling_result2/';
 Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/processed_result/'
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/processed_result2/'
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像  
 img_num = length(img_path_list);%获取图像总数量   
 
-if ~exist(fullfile(Outputpath, 'filling_result')) 
-   mkdir(fullfile(Outputpath, 'filling_result')); 
+floder = OutputDir(length(Outputpath) + 2:length(OutputDir));
+if ~exist(fullfile(Outputpath, floder)) 
+   mkdir(fullfile(Outputpath, floder)); 
 end
     
  for j = 1:img_num %逐一读取图像  
