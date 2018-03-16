@@ -14,9 +14,9 @@ imdb.paths.image2 = esc(fullfile(opts.dataDir, 'CropDCMImagesMirror', '%s.mat'))
 % imdb.paths.image = esc(fullfile(opts.dataDir, 'DCMImages', '%s.dcm')) ;
 imdb.sets.id = uint8([1 2 3]) ;
 imdb.sets.name = {'train', 'val', 'test'} ;
-imdb.classes.id = uint8(1:2) ;
-imdb.classes.name = {'icontour', 'ocontour'} ;
-imdb.classes.images = cell(1,2) ;
+imdb.classes.id = uint8(1) ;
+imdb.classes.name = {'icontour'} ;
+imdb.classes.images = cell(1) ;
 imdb.images.id = [] ;
 imdb.images.name = {} ;
 imdb.images.set = [] ;
@@ -38,7 +38,7 @@ end
 % Compress data types
 imdb.images.id = uint32(imdb.images.id) ;
 imdb.images.set = uint8(imdb.images.set) ;
-for i=1:2
+for i=1
   imdb.classes.images{i} = uint32(imdb.classes.images{i}) ;
 end
 

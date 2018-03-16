@@ -3,12 +3,12 @@ function stats = getDatasetStatistics(imdb)
 train = find(imdb.images.set == 1 & imdb.images.segmentation) ;
 
 % Class statistics
-classCounts = zeros(3,1) ;
+classCounts = zeros(2,1) ;
 for i = 1:numel(train)
   fprintf('%s: computing segmentation stats for training image %d\n', mfilename, i) ;
   lb = imread(sprintf(imdb.paths.classSegmentation, imdb.images.name{train(i)})) ;
   ok = lb < 255 ;
-  classCounts = classCounts + accumarray(lb(ok(:))+1, 1, [3 1]) ;
+  classCounts = classCounts + accumarray(lb(ok(:))+1, 1, [2 1]) ;
 end
 stats.classCounts = classCounts ;
 

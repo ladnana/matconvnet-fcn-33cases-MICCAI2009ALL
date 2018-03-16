@@ -106,7 +106,7 @@ net.meta.classes = imdb.classes.name ;
 bopts.numThreads = opts.numFetchThreads ;
 bopts.labelStride = 1 ;
 bopts.labelOffset = 1 ;
-bopts.classWeights = ones(1,3,'single') ;
+bopts.classWeights = ones(1,2,'single') ;
 bopts.rgbMean = stats.rgbMean ; 
 bopts.useGpu = numel(opts.train.gpus) > 0 ;
 

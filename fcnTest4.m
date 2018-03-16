@@ -104,8 +104,8 @@ net.mode = 'test' ;
 % -------------------------------------------------------------------------
 
 numGpus = 1 ;
-confusion = zeros(3) ;
-confusion2 = zeros(3) ;
+confusion = zeros(2) ;
+confusion2 = zeros(2) ;
 for i = 1:numel(val)
   imId = val(i) ;
   name = imdb.images.name{imId} ;
@@ -170,8 +170,8 @@ for i = 1:numel(val)
   
   % Accumulate errors
   ok = lb > 0 ;
-  confusion2 = confusion2 + accumarray([lb(ok),pred(ok)],1,[3 3]) ;%edited by mR
-  confusion = accumarray([lb(ok),pred(ok)],1,[3 3]) ;%edited by mR
+  confusion2 = confusion2 + accumarray([lb(ok),pred(ok)],1,[2 2]) ;%edited by mR
+  confusion = accumarray([lb(ok),pred(ok)],1,[2 2]) ;%edited by mR
 
   % Plots
 %   if mod(i - 1,30) == 0 || i == numel(val)
@@ -183,7 +183,7 @@ for i = 1:numel(val)
     fprintf('\n meanIU: %5.2f pixelAcc: %5.2f, meanAcc: %5.2f\n', ...
             500*info.miu, 500*info.pacc, 500*info.macc) ;
     diary(fullfile('H:/nana/data/test', 'info.txt')); 
-    disp([name,' ',num2str(info.iu(2)),' ',num2str(info.iu(3)),' ',num2str(info.pacc),' ',num2str(info.macc)]);%edited by mR
+    disp([name,' ',num2str(info.iu(1)),' ',num2str(info.iu(2)),' ',num2str(info.pacc),' ',num2str(info.macc)]);%edited by mR
     diary off;
 
 %     figure(1) ; clf;
