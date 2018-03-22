@@ -1,7 +1,7 @@
 clc;clear;
 
-expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain';
-inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/filling_result2';
+expDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape';
+inputDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 % resPath = fullfile(expDir, 'results_processed.mat') ;
 

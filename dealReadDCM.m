@@ -13,7 +13,7 @@ if ~exist(fullfile(Outputpath, floder))
    mkdir(fullfile(Outputpath, floder)); 
 end
     
- for j = 10:img_num %逐一读取图像  
+ for j = 1:img_num %逐一读取图像  
      image_name = img_path_list(j).name;% 图像名  
      I = dicomread(strcat(InputDir,image_name)); 
 %      figure;imshow(I,'DisplayRange',[]);

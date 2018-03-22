@@ -5,7 +5,7 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_HVmirror' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape' ;
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;

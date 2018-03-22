@@ -15,13 +15,14 @@ stats.classCounts = classCounts ;
 % Image statistics
 for t=1:numel(train)
   fprintf('%s: computing RGB stats for training image %d\n', mfilename, t) ;
-%   if t < 757 %1009为mat图片数量+1
-  if t < 757 || (t > 888 && t < 1645) || (t > 1776 && t < 2533)
-      rgb = load(sprintf(imdb.paths.image2, imdb.images.name{train(t)}));
-      rgb = rgb.picture;
-  else
+%   if t < 268 %1009为mat图片数量+1
+%   if t < 268 || (t > 390 && t < 658) || (t > 780 && t < 1048) ||  (t > 1170 && t < 1438) || t > 1560 
+% %   if t < 268 || (t > 390 && t < 925) || (t > 1047)
+%       rgb = load(sprintf(imdb.paths.image2, imdb.images.name{train(t)}));
+%       rgb = rgb.picture;
+%   else
       rgb = dicomread(sprintf(imdb.paths.image, imdb.images.name{train(t)})) ;
-  end
+%   end
   rgb = cat(3, rgb, rgb, rgb) ;
   rgb = single(rgb) ;
   z = reshape(permute(rgb,[3 1 2 4]),3,[]) ;
