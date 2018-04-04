@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape/filling_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape';
-file_path =  'H:/nana/data/fcn4s-500-MICCAI2009_AugShape/processed_result/'
+OutputDir = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08/filling_result/';
+Outputpath = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08';
+file_path =  'H:/nana/data/fcn4s-100-MICCAI2009_123+half08/processed_result/'
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像  
 img_num = length(img_path_list);%获取图像总数量   
 

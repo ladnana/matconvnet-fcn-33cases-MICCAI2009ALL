@@ -6,9 +6,8 @@ OutputDir = 'H:/nana/data/33cases_MICCAI2009/getImagesIcontour20/';
 Outputpath = 'H:/nana/data/33cases_MICCAI2009';
 InputDir =  'H:/nana/data/33cases_MICCAI2009/SegmentationClass/';
 
-floder = OutputDir(length(Outputpath) + 2:length(OutputDir));
-if ~exist(fullfile(Outputpath, floder)) 
-   mkdir(fullfile(Outputpath, floder)); 
+if ~exist(OutputDir) 
+   mkdir(OutputDir); 
 end
 for j = 1 :33
     name = ['SCD00000' num2str(j,'%02d') '_20*.png'];

@@ -2,20 +2,19 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape/processed_result1/';
-Outputpath = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape';
-file_path =  'H:/nana/data/fcn4s-500-MICCAI2009_AugShape/segamentation_result1/';% 图像文件夹路径
+OutputDir = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08/processed_result1/';
+Outputpath = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08';
+file_path =  'H:/nana/data/fcn4s-100-MICCAI2009_123+half08/segamentation_result1/';% 图像文件夹路径
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像
 img_num = length(img_path_list);%获取图像总数量
 
-floder = OutputDir(length(Outputpath) + 2:length(OutputDir));
-if ~exist(fullfile(Outputpath, floder)) 
-   mkdir(fullfile(Outputpath, floder)); 
+if ~exist(OutputDir) 
+   mkdir(OutputDir); 
 end
 
 % A = imread(strcat(file_path,'SCD0000401_0040.png'));
 % imshow(A);
-for j = 1: img_num %逐一读取图像
+for j = 1: img_num%逐一读取图像
     image_name = img_path_list(j).name;% 图像名
     [I,map] = imread(strcat(file_path,image_name));
     imshow(I,map);
@@ -40,7 +39,7 @@ for j = 1: img_num %逐一读取图像
             end
 %             if i == 1
 %                 [~,ind] = min(areas);
-% %                 [~,ind] = max(areas(find(areas-max(areas))));
+% %                 ind = 2;
 %             else
 %                 [~,ind] = max(areas);
 %             end
@@ -88,7 +87,11 @@ for j = 1: img_num %逐一读取图像
     C(find(A)) = 1;
     C(find(B)) = 2;
     I0 = uint8(C);  %为了保留图片做对比
-    
+%     image(I0);
+%     imshow(I0,map);
+%     pathfile = fullfile(OutputDir,image_name);
+%     imwrite(I0,map,pathfile,'png');
+%     
     % extract contours
     B = bwboundaries (endocardium);
     if isempty (B)

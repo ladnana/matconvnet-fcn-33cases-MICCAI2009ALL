@@ -1,7 +1,7 @@
 clc;clear;
 
-expDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape';
-inputDir = 'H:/nana/data/fcn4s-500-MICCAI2009_AugShape/filling_result';
+expDir = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08';
+inputDir = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 % resPath = fullfile(expDir, 'results_processed.mat') ;
 
@@ -40,9 +40,9 @@ X{28,1}='SCD0004201'; X{28,2}='SC-N-09';
 X{29,1}='SCD0004301'; X{29,2}='SC-N-10';
 X{30,1}='SCD0004401'; X{30,2}='SC-N-11';
 
-for i=1:numel(val)
+for j=1:numel(val)
    
-    imId = val(i) ;
+    imId = val(j) ;
     name = imdb.images.name{imId} ;
     display(['Processing: ' name]);
     inputPath = fullfile(inputDir, [name '.png']) ;
@@ -51,7 +51,7 @@ for i=1:numel(val)
     index = find(strcmp(X , prefix));
     if ~isempty(index)
         folder = X{index,2};
-        outputPathPrefix = fullfile(expDir,'Points2',folder,'contours-auto','Auto1') ;
+        outputPathPrefix = fullfile(expDir,'Points',folder,'contours-auto','Auto1') ;
         if ~exist(outputPathPrefix) 
             mkdir(outputPathPrefix);
         end

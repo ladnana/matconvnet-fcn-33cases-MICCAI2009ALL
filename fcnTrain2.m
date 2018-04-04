@@ -1,14 +1,14 @@
 function fcnTrain(varargin)
 %FNCTRAIN Train FCN model using MatConvNet
 
-run matconvnet/matlab/vl_setupnn ;
-addpath matconvnet/examples ;
+run ../matconvnet/matlab/vl_setupnn ;
+addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'data/fcn2s-500-33cases_MICCAI2009' ;
-opts.dataDir = 'data/33cases_MICCAI2009' ;
+opts.expDir = 'H:/nana/data/fcn2s-500-MICCAI2009_123' ;
+opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn2s' ;
-opts.sourceModelPath = 'data/models/imagenet-vgg-verydeep-16.mat' ;
+opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
 % experiment setup
@@ -21,17 +21,17 @@ opts.numFetchThreads = 1 ; % not used yet
 
 % training options (Stochastic Gradient Descent SGD)
 % opts.train = struct(]) ;%edited by mR
-opts.train.gpus = [] ;%edited by mR
+opts.train.gpus = 1 ;%edited by mR
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
 trainOpts.batchSize = 20 ;
 trainOpts.numSubBatches = 10 ;
 trainOpts.continue = true ;
-trainOpts.gpus = [] ;
+trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
-trainOpts.learningRate = 0.0001 * ones(1,100) ;%edited by mR
-trainOpts.numEpochs = numel(trainOpts.learningRate) ;
+trainOpts.numEpochs = 500;
+trainOpts.learningRate = 0.0001 * ones(1,trainOpts.numEpochs);%edited by mR ԭʼΪ0.0001
 
 % -------------------------------------------------------------------------
 % Setup data
@@ -103,7 +103,7 @@ net.meta.classes = imdb.classes.name ;
 bopts.numThreads = opts.numFetchThreads ;
 bopts.labelStride = 1 ;
 bopts.labelOffset = 1 ;
-bopts.classWeights = ones(1,3,'single') ;
+bopts.classWeights = ones(1,2,'single') ;
 bopts.rgbMean = stats.rgbMean ;
 bopts.useGpu = numel(opts.train.gpus) > 0 ;
 

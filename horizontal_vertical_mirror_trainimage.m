@@ -1,8 +1,15 @@
 clc;clear;
 
-imdbPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_addIcontourTrain/imdb.mat';
-cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/CropDCMImagesMirror';
-croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/CropSegmentationClassMirror';
+imdbPath = 'H:/nana/data/fcn4s-500-MICCAI2009_123/imdb.mat';
+cropimagesPath = 'H:/nana/data/33cases_MICCAI2009/CropDCMImages-i_HVmirror';
+croplabelsPath = 'H:/nana/data/33cases_MICCAI2009/CropSegmentationClass-i_HVmirror';
+
+if ~exist(cropimagesPath) 
+   mkdir(cropimagesPath); 
+end
+if ~exist(croplabelsPath) 
+   mkdir(croplabelsPath); 
+end
 
 imdb = load(imdbPath) ;
 colormap=zeros(3,3);
@@ -12,31 +19,31 @@ size = find(imdb.images.set == 1 & imdb.images.segmentation) ;
 
 for i = 1:numel(size)
     %create croped images
-    if i < 757
-        imagePath = sprintf(imdb.paths.image2, imdb.images.name{size(i)}) ;
-        I = load(imagePath);
-        picture = I.picture;
-        save(fullfile(cropimagesPath,[imdb.images.name{size(i)} '.mat']),'picture');
-        picture = picture(end:-1:1,:);  %vertical mirror
-        save(fullfile(cropimagesPath,[strcat('V-',imdb.images.name{size(i)}) '.mat']),'picture');
-        picture = I.picture;
-        picture = picture(:,end:-1:1);     % horizontal mirror
-        save(fullfile(cropimagesPath,[strcat('H-',imdb.images.name{size(i)}) '.mat']),'picture');
-    else
+%     if i < 757
+%         imagePath = sprintf(imdb.paths.image2, imdb.images.name{size(i)}) ;
+%         I = load(imagePath);
+%         picture = I.picture;
+%         save(fullfile(cropimagesPath,[imdb.images.name{size(i)} '.mat']),'picture');
+%         picture = picture(end:-1:1,:);  %vertical mirror
+%         save(fullfile(cropimagesPath,[strcat('V-',imdb.images.name{size(i)}) '.mat']),'picture');
+%         picture = I.picture;
+%         picture = picture(:,end:-1:1);     % horizontal mirror
+%         save(fullfile(cropimagesPath,[strcat('H-',imdb.images.name{size(i)}) '.mat']),'picture');
+%     else
         imagePath = sprintf(imdb.paths.image, imdb.images.name{size(i)}) ;
         I = dicomread(imagePath);
         dicomwrite(I,fullfile(cropimagesPath,[imdb.images.name{size(i)} '.dcm']));
-        I1 = I(end:-1:1,:);
-        dicomwrite(I1,fullfile(cropimagesPath,[strcat('V-',imdb.images.name{size(i)}) '.dcm']));
+%         I1 = I(end:-1:1,:);
+%         dicomwrite(I1,fullfile(cropimagesPath,[strcat('V-',imdb.images.name{size(i)}) '.dcm']));
         I2 = I(:,end:-1:1);
         dicomwrite(I2,fullfile(cropimagesPath,[strcat('H-',imdb.images.name{size(i)}) '.dcm']));
-    end    
+%     end    
     %create croped labels
     labelsPath = sprintf(imdb.paths.classSegmentation, imdb.images.name{size(i)}) ;
     p = imread(labelsPath);
     imwrite(p,colormap,fullfile(croplabelsPath,[imdb.images.name{size(i)} '.png']));
-    p1 = p(end:-1:1,:);
-    imwrite(p1,colormap,fullfile(croplabelsPath,[strcat('V-',imdb.images.name{size(i)}) '.png']));
+%     p1 = p(end:-1:1,:);
+%     imwrite(p1,colormap,fullfile(croplabelsPath,[strcat('V-',imdb.images.name{size(i)}) '.png']));
     p2 = p(:,end:-1:1);
     imwrite(p2,colormap,fullfile(croplabelsPath,[strcat('H-',imdb.images.name{size(i)}) '.png']));
 end
