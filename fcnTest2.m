@@ -4,9 +4,9 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08' ;%edited by mR
+opts.expDir = 'H:/nana/data/fcn2s-100-MICCAI2009_123' ;%edited by mR
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
-opts.modelPath = 'H:/nana/data/fcn4s-100-MICCAI2009_123+half08/net-epoch-100.mat' ;%edited by mR
+opts.modelPath = 'H:/nana/data/fcn2s-100-MICCAI2009_123/net-epoch-100.mat' ;%edited by mR
 opts.modelFamily = 'matconvnet' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
@@ -170,8 +170,8 @@ for i = 1:numel(val)
 
   % Accumulate errors
   ok = lb > 0 ;
-  confusion2 = confusion2 + accumarray([lb(ok),pred(ok)],1,[3 3]) ;%edited by mR
-  confusion = accumarray([lb(ok),pred(ok)],1,[3 3]) ;%edited by mR
+  confusion2 = confusion2 + accumarray([lb(ok),pred(ok)],1,[2 2]) ;%edited by mR
+  confusion = accumarray([lb(ok),pred(ok)],1,[2 2]) ;%edited by mR
 
   % Plots
 %   if mod(i - 1,30) == 0 || i == numel(val)
@@ -182,7 +182,7 @@ for i = 1:numel(val)
     fprintf('%4.1f ', 500 * info.iu) ;
     fprintf('\n meanIU: %5.2f pixelAcc: %5.2f, meanAcc: %5.2f\n', ...
             500*info.miu, 500*info.pacc, 500*info.macc) ;
-    diary(fullfile('H:/nana/data/fcn4s-100-MICCAI2009_123+half08', 'info.txt')); 
+    diary(fullfile('H:/nana/data/fcn2s-100-MICCAI2009_123', 'info.txt')); 
     disp([name,' ',num2str(info.iu(1)),' ',num2str(info.iu(2)),' ',num2str(info.pacc),' ',num2str(info.macc)]);%edited by mR
     diary off;
 

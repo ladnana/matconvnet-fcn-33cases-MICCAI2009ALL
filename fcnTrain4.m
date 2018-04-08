@@ -5,7 +5,7 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-MICCAI2009_123+half08' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case' ;
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
@@ -25,7 +25,7 @@ opts.train.gpus = 1 ;%edited by mR
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
 trainOpts.batchSize = 20 ;%每个batch的样本数
-trainOpts.numSubBatches = 10 ; %每个batch分成多少个subbatch
+trainOpts.numSubBatches = 1 ; %每个batch分成多少个subbatch
 trainOpts.continue = true ;
 trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
