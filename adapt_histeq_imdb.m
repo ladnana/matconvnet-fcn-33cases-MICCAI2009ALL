@@ -1,7 +1,7 @@
 clc;clear;
 
-imdbPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1/imdb.mat';
-OutputimagesPath = 'H:/nana/data/33cases_MICCAI2009/clahe_dealimage_control';
+imdbPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case/imdb.mat';
+OutputimagesPath = 'H:/nana/data/33cases_MICCAI2009/clahe_dealimage_control1';
 
 if ~exist(OutputimagesPath) 
    mkdir(OutputimagesPath); 

@@ -4,9 +4,9 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case' ;%edited by mR
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror' ;%edited by mR
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
-opts.modelPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case/net-epoch-100.mat' ;%edited by mR
+opts.modelPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror/net-epoch-100.mat' ;%edited by mR
 opts.modelFamily = 'matconvnet' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
@@ -182,7 +182,7 @@ for i = 1:numel(val)
     fprintf('%4.1f ', 500 * info.iu) ;
     fprintf('\n meanIU: %5.2f pixelAcc: %5.2f, meanAcc: %5.2f\n', ...
             500*info.miu, 500*info.pacc, 500*info.macc) ;
-    diary(fullfile('H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case', 'info.txt')); 
+    diary(fullfile('H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror', 'info.txt')); 
     disp([name,' ',num2str(info.iu(1)),' ',num2str(info.iu(2)),' ',num2str(info.pacc),' ',num2str(info.macc)]);%edited by mR
     diary off;
 
