@@ -5,7 +5,7 @@ run ../matconvnet/matlab/vl_setupnn ;
 addpath ../matconvnet/examples ;
 
 % experiment and data paths
-opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror' ;
+opts.expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132-i_20-1_2lr_4scaleLoss+2upshape+2.0-1.5-1_3dshape+2mshape-Vmirror_0mean1' ;
 opts.dataDir = 'H:/nana/data/33cases_MICCAI2009' ;
 opts.modelType = 'fcn4s' ;
 opts.sourceModelPath = 'H:/nana/data/models/imagenet-vgg-verydeep-16.mat' ;
@@ -30,8 +30,9 @@ trainOpts.continue = true ;
 trainOpts.gpus = 1 ;
 trainOpts.prefetch = true ;
 trainOpts.expDir = opts.expDir ;
-trainOpts.numEpochs = 500;
-trainOpts.learningRate = 0.0001 * ones(1,trainOpts.numEpochs);%edited by mR ԭʼΪ0.0001
+trainOpts.numEpochs = 50;
+trainOpts.learningRate = 0.0002 * ones(1,trainOpts.numEpochs);%edited by mR ԭʼΪ0.0001
+% trainOpts.learningRate(trainOpts.numEpochs/2+1:trainOpts.numEpochs) = 0.0001 ;%edited by mR ԭʼΪ0.0001
 % trainOpts.learningRate(trainOpts.numEpochs) = trainOpts.learningRate(1) * 0.01;
 % for i = 2 :trainOpts.numEpochs - 1
 %     afa = i / trainOpts.numEpochs ;

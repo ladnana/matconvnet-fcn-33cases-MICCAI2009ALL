@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror/filling_result/';
-Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror';
-file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage+first_2shape_2loss_allmirror/processed_result/'
+OutputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132-i_20-1_2lr_4scaleLoss+2upshape+2.0-1.5-1_3dshape+2mshape-Vmirror_0mean1/filling_result/';
+Outputpath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132-i_20-1_2lr_4scaleLoss+2upshape+2.0-1.5-1_3dshape+2mshape-Vmirror_0mean1';
+file_path =  'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132-i_20-1_2lr_4scaleLoss+2upshape+2.0-1.5-1_3dshape+2mshape-Vmirror_0mean1/processed_result/'
 img_path_list = dir(strcat(file_path,'*.png'));%获取该文件夹中所有png格式的图像  
 img_num = length(img_path_list);%获取图像总数量   
 
@@ -19,8 +19,21 @@ end
      [m,n] = size(I);
 %      I = I(1:2:m,1:2:n);
 %      b = padarray(I, [64 64]); 
-     a = padarray(I, [63 63]); %在A的周围扩展63个0
-     b = padarray(a,[2 2],'replicate','post');
+    idx = strfind(image_name,'_');
+    num = image_name(idx-4:idx-1);
+    if str2num(num) == 4201 || str2num(num) == 3401 || str2num(num) == 1901 || str2num(num) == 4001
+        I = rot90(I,1);
+    end
+%     if str2num(num) == 1901
+%         b = uint8(zeros(256));
+%         b(80:80+127,64:64+127) = I;
+%     elseif str2num(num) == 3401
+%         b = uint8(zeros(256));
+%         b(24:24+127,50:50+127) = I;
+%     else
+        a = padarray(I, [63 63]); %在A的周围扩展63个0
+        b = padarray(a,[2 2],'replicate','post');
+%     end
      pathfile = fullfile(OutputDir,image_name); 
      imshow(b,map);
      imwrite(b,map,pathfile,'png');

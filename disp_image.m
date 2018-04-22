@@ -1,7 +1,7 @@
 clc;clear;
 
-imdbPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case/imdb.mat';
-imdbPath2 = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-1+1_2+2+08+132-Vmirror-i_1-control33case-dealimage/imdb.mat';
+imdbPath = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132+20+08-i_1_2scaleLoss_newscaleshape-1_25+2/imdb.mat';
+imdbPath2 = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132+20+08-i_1_2scaleLoss_newscaleshape-1_25+2-dealimage/imdb.mat';
 OutputimagesPath = 'H:/nana/data/33cases_MICCAI2009/clahe_dealimage';
 
 if ~exist(OutputimagesPath) 
@@ -13,7 +13,7 @@ imdb2 = load(imdbPath2) ;
 train = find(imdb.images.set == 1 & imdb.images.segmentation ) ;
 train2 = find(imdb2.images.set == 1 & imdb2.images.segmentation ) ;
 for i = 1 : numel(train)
-    if i < 403 || (i > 648 && i < 1051) || (i > 1296 && i < 1831 )
+    if i < 403 ||(i > 657 && i < 925)
         disp([imdb.images.name{train(i)},'.mat']);
         imagePath = sprintf(imdb.paths.image2, imdb.images.name{train(i)}) ;
         I = load(imagePath);

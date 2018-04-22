@@ -3,8 +3,8 @@ clc
 close all
 clear all
 
-expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop';
-inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009_128_rate2.0RMSprop/filling_result';
+expDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132-i_20-1_2lr_2scaleLoss+1.25+1scaleupshape';
+inputDir = 'H:/nana/data/fcn4s-500-33cases_MICCAI2009-123+132-i_20-1_2lr_2scaleLoss+1.25+1scaleupshape/filling_result';
 imdbPath = fullfile(expDir, 'imdb.mat') ;
 
 len = length(inputDir);

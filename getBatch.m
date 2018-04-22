@@ -81,7 +81,7 @@ for i=1:numel(images)
   for ai = 1:opts.numAugments
     sz = opts.imageSize(1:2) ;
     scale = max(h/sz(1), w/sz(2)) ;
-    scale = scale .* (1 + (rand(1)-.5)/5) ;
+%     scale = scale .* (1 + (rand(1)-.5)/5) ;
 
     sy = round(scale * ((1:sz(1)) - sz(1)/2) + h/2) ;
     sx = round(scale * ((1:sz(2)) - sz(2)/2) + w/2) ;
